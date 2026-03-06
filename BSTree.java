@@ -14,19 +14,36 @@ public class BSTree <E extends Comparable<E>> {
         }
 
     }
+    TreeNode<E> searchHelper(TreeNode<E> curr, TreeNode<E> d) {
+        if (curr == null) {
+            return null;
+        } else if (curr.data.compareTo(d.data) == 0) {
+            return curr;
+        } else if (curr.data.compareTo(d.data) < 0) {
+            return searchHelper(curr.rightChild, d);
+        } else {
+            return searchHelper(curr.leftChild, d);
+        }
+    }
+    void inOrderHelper(TreeNode<E> curr){
+        if(curr == null){
+            return;
+        }
+        inOrderHelper(curr.rightChild);
+        System.out.println(curr.data + " ");
+        inOrderHelper(curr.leftChild);
+    }
 
     void insert(TreeNode<E> n) {
-        if (root == null) {
-            root = n;
-        } else {
-
-            {
-                insertHelper(root, n);
-            }
-        }
+        if (root == null) {root = n;}
+        else {root = insertHelper(root, n);}
 
     }
-    TreeNode<E> inOrder(){
-        while()
+    TreeNode<E> search(TreeNode<E> d) {
+        if (root == null) {return null;}
+        else{return searchHelper(root, d);}
+    }
+    void inOrder(){
+        inOrderHelper(root);
     }
 }
